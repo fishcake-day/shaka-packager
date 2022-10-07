@@ -1,4 +1,4 @@
-FROM alpine:3.16 as builder
+FROM alpine:3.15 as builder
 
 # Install utilities, libraries, and dev tools.
 RUN apk add --no-cache \
@@ -35,7 +35,7 @@ RUN ninja -C src/out/Release
 
 # Copy only result binaries to our final image.
 FROM alpine:3.16
-RUN apk add --no-cache libstdc++ python
+RUN apk add --no-cache libstdc++ python3 c-ares
 COPY --from=builder /shaka_packager/src/out/Release/packager \
                     /shaka_packager/src/out/Release/mpd_generator \
                     /shaka_packager/src/out/Release/pssh-box.py \
