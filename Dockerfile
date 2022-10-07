@@ -44,3 +44,8 @@ COPY --from=builder /shaka_packager/src/out/Release/packager \
 # cannot be combined with the line above as Docker's copy command skips the
 # directory itself. See https://github.com/moby/moby/issues/15858 for details.
 COPY --from=builder /shaka_packager/src/out/Release/pyproto /usr/bin/pyproto
+
+VOLUME ["/media"]
+WORKDIR /media
+
+ENTRYPOINT [ "/usr/bin/packager" ]
