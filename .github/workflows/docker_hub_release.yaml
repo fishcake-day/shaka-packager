@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_CI_TOKEN }}
 
       - name: Push to Docker Hub
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           push: true
           context: src/
