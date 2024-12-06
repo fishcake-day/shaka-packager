@@ -1,4 +1,4 @@
-FROM alpine:3.15 as builder
+FROM alpine:3.21 as builder
 
 # Install utilities, libraries, and dev tools.
 RUN apk add --no-cache \
@@ -34,7 +34,7 @@ RUN gclient sync --force
 RUN ninja -C src/out/Release
 
 # Copy only result binaries to our final image.
-FROM alpine:3.16
+FROM alpine:3.21
 RUN apk add --no-cache libstdc++ python3 c-ares
 COPY --from=builder /shaka_packager/src/out/Release/packager \
                     /shaka_packager/src/out/Release/mpd_generator \
